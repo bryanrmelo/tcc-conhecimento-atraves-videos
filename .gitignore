@@ -2,5 +2,6 @@
 backend/.settings/
 backend/target/
 backend/.classpath
-frontend/node_modules/
+node_modules/
+servers/
 
