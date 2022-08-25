@@ -1,21 +1,26 @@
+package edu.ifrs.conhecimentoatravesvideos.servicos;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import edu.ifrs.conhecimentoatravesvideos.model.Usuario;
+import edu.ifrs.conhecimentoatravesvideos.model.UserDetailsImpl;
+import edu.ifrs.conhecimentoatravesvideos.repositorios.UsuarioRepositorio;
+
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private FuncionarioRepositorio funcionarioRepositorio;
+    private UsuarioRepositorio UsuarioRepositorio;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Funcionario funcionario = funcionarioRepositorio.findByEmail(email)
-            .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
-        
-        return new UserDetailsImpl(funcionario);
+        Usuario Usuario = UsuarioRepositorio.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
+
+        return new UserDetailsImpl(Usuario);
     }
-    
 }
