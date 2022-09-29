@@ -7,12 +7,19 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { AssistirComponent } from './components/assistir/assistir.component';
 import { MaterialModule } from './material/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthModule } from '@auth0/auth0-angular';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HomeComponent, SidebarComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    HomeComponent,
+    SidebarComponent,
+    AssistirComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

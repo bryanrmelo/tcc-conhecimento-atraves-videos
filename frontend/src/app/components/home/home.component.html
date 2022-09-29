@@ -2,8 +2,7 @@
   <div *ngFor="let video of videos">
     <div class="card shadow" style="width: 20rem">
       <a
-        href="https://www.youtube.com/watch?v={{ video.id.videoId }}"
-        target="_blank"
+        [routerLink]="['/assistir', video.id.videoId]"
       >
         <img
           [src]="video.snippet.thumbnails.medium.url"
