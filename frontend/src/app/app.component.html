@@ -13,6 +13,7 @@
 </style>
 
 <nav
+  id="navbar"
   class="navbar navbar-expand-lg navbar-dark bg-dark"
   style="margin-bottom: 100px"
 >
@@ -125,4 +126,19 @@
 </nav>
 <router-outlet></router-outlet>
 
-<footer id="footer" class="container-fluid bg-dark pt-3"><p class="text-center text-light mb-0">IFRS 2022 &copy;</p></footer>
+<footer id="footer" class="container-fluid bg-dark pt-1">
+  <p class="text-center text-light mb-0">IFRS 2022 &copy;</p>
+</footer>
+
+<script>
+  var prevScrollpos = window.pageYOffset;
+  window.onscroll = function () {
+    var currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+      document.getElementById("navbar").style.top = "0";
+    } else {
+      document.getElementById("navbar").style.top = "-50px";
+    }
+    prevScrollpos = currentScrollPos;
+  };
+</script>
