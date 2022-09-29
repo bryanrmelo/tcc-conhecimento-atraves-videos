@@ -18,10 +18,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Perfil perfil = 
-            usuario.getCargo().getNome().equals("Gerente") ? 
-            Perfil.ADMIN : 
-            Perfil.USUARIO;
+        Perfil perfil = Perfil.ADMIN;
 
         return AuthorityUtils.createAuthorityList(perfil.toString());
     }
@@ -33,7 +30,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public String getUsername() {
-        return usuario.getEmail();
+        return usuario.getNome();
     }
 
     @Override
@@ -43,7 +40,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return usuario.getDataDemissao() == null;
+        return usuario.getAtivo() == true;
     }
 
     @Override
@@ -55,5 +52,5 @@ public class UserDetailsImpl implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-    
+
 }

@@ -8,8 +8,8 @@ public class Video extends Entidade {
     private String nome;
     private String url;
     private String descricao;
-    private Autor autor;
-    private Playlist playlist;
+    // private Autor autor;
+    // private Playlist playlist;
 
     public String getNome() {
         return nome;
@@ -34,20 +34,21 @@ public class Video extends Entidade {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-
-    public Autor getAutor() {
-        return autor;
-    }
-
-    public void setAutor(Autor autor) {
-        this.autor = autor;
-    }
-
-    public Playlist getPlaylist() {
-        return playlist;
-    }
-
-    public void setPlaylist(Playlist playlist) {
-        this.playlist = playlist;
-    }
+    /*
+     * public Autor getAutor() {
+     * return autor;
+     * }
+     * 
+     * public void setAutor(Autor autor) {
+     * this.autor = autor;
+     * }
+     * 
+     * public Playlist getPlaylist() {
+     * return playlist;
+     * }
+     * 
+     * public void setPlaylist(Playlist playlist) {
+     * this.playlist = playlist;
+     * }
+     */
 }

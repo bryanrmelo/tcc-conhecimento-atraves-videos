@@ -4,6 +4,8 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import edu.ifrs.conhecimentoatravesvideos.model.Usuario;
@@ -19,7 +21,7 @@ public class UsuarioServico {
         return usuarioRepositorio.existsById(id);
     }
 
-    public Usuario getUsuario(Usuario usuario) {
+    public Usuario buscarUsuario(Usuario usuario) {
         Optional<Usuario> u = usuarioRepositorio.findById(usuario.getId());
         try {
             return u.get();
@@ -27,6 +29,19 @@ public class UsuarioServico {
             return null;
         }
         
+    }
+
+    public Usuario buscarPorId(Long id) {
+        Optional<Usuario> u = usuarioRepositorio.findById(id);
+        try {
+            return u.get();
+        } catch (NoSuchElementException e) {
+            return null;
+        }
+    }
+
+    public Page<Usuario> buscarTodos(Pageable paginacao) {
+        return null;
     }
 
 }

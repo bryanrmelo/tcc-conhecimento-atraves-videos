@@ -9,17 +9,17 @@ import org.springframework.hateoas.Link;
 import org.springframework.hateoas.server.SimpleRepresentationModelAssembler;
 import org.springframework.stereotype.Component;
 
-import edu.ifrs.conhecimentoatravesvideos.api.controles.VideoControleApi;
-import edu.ifrs.conhecimentoatravesvideos.model.Video;
+import edu.ifrs.conhecimentoatravesvideos.api.controles.UsuarioControleApi;
+import edu.ifrs.conhecimentoatravesvideos.model.Usuario;
 
 @Component
-public class VideoAssembler implements SimpleRepresentationModelAssembler<Video> {
+public class UsuarioAssembler implements SimpleRepresentationModelAssembler<Usuario> {
 
     @Override
-    public void addLinks(EntityModel<Video> resource) {
+    public void addLinks(EntityModel<Usuario> resource) {
         Long id = resource.getContent().getId();
 
-        Link selfLink = linkTo(methodOn(VideoControleApi.class).buscarPorId(id))
+        Link selfLink = linkTo(methodOn(UsuarioControleApi.class).buscarPorId(id))
                 .withSelfRel()
                 .withType("GET");
 
@@ -27,13 +27,13 @@ public class VideoAssembler implements SimpleRepresentationModelAssembler<Video>
     }
 
     @Override
-    public void addLinks(CollectionModel<EntityModel<Video>> resources) {
-        /*
-         * Link selfLink = linkTo(methodOn(VideoControleApi.class).buscarTodos(null))
-         * .withSelfRel()
-         * .withType("GET");
-         * 
-         * resources.add(selfLink);
-         */
+    public void addLinks(CollectionModel<EntityModel<Usuario>> resources) {
+
+        Link selfLink = linkTo(methodOn(UsuarioControleApi.class).buscarTodos(null))
+                .withSelfRel()
+                .withType("GET");
+
+        resources.add(selfLink);
+
     }
 }

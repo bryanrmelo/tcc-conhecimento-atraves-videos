@@ -3,7 +3,8 @@ package edu.ifrs.conhecimentoatravesvideos.api.dto;
 import edu.ifrs.conhecimentoatravesvideos.model.Autor;
 import edu.ifrs.conhecimentoatravesvideos.model.Playlist;
 
-public class VideoDTO {
+
+public abstract class VideoDTO extends EntidadeDTO {
     private String nome;
     private String url;
     private String descricao;

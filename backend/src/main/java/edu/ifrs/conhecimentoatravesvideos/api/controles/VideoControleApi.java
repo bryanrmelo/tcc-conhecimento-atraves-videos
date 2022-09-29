@@ -31,7 +31,7 @@ public class VideoControleApi {
         return null;
 
     }
-
+    /* 
     @GetMapping
     public CollectionModel<EntityModel<Video>> buscarTodos(@PageableDefault(sort = { "id" }, direction = Direction.ASC) Pageable paginacao) {
         Page<Video> videos = videoServico.buscarTodos(paginacao);
@@ -39,4 +39,5 @@ public class VideoControleApi {
         return pagedResourcesAssembler.toModel(videos, videoAssembler);
         
     }
+    */
 }

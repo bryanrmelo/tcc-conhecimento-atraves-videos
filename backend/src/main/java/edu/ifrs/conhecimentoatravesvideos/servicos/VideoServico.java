@@ -14,8 +14,9 @@ public class VideoServico  {
     @Autowired
     private VideoRepositorio videoRepositorio;
 
+    /* 
     public Page<Video> buscarTodos(Pageable paginacao) {
         return videoRepositorio.findAll(paginacao);
     }
-    
+    */
 }

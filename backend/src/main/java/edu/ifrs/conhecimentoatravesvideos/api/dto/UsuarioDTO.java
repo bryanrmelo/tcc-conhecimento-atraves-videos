@@ -1,26 +1,19 @@
-package edu.ifrs.conhecimentoatravesvideos.model;
+package edu.ifrs.conhecimentoatravesvideos.api.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.springframework.hateoas.server.core.Relation;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-@Entity
-@Relation(collectionRelation = "usuarios")
-public class Usuario extends Entidade {
-
-    @Column(nullable = false)
+public class UsuarioDTO extends EntidadeDTO {
+    
+    @NotNull
     private String nome;
 
-    @JsonIgnore
+    
     @Size(min = 5, max = 255)
-    @Column(nullable = false)
+    @NotNull
     private String senha;
 
-    @Column(nullable = false)
+    @NotNull
     private boolean ativo;
 
     public String getNome() {
