@@ -1,8 +1,9 @@
-import { IUsuario } from './../../interfaces/IUsuario';
-import { UsuarioService } from './../../services/usuario.service';
+import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '@auth0/auth0-angular';
+import { Router } from '@angular/router';
+import { Usuario } from 'src/app/models/usuario';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -14,8 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private usuarioService: UsuarioService,
-    public auth: AuthService
+    private loginService: LoginService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -24,14 +25,29 @@ export class LoginComponent implements OnInit {
 
   criarForm() {
     this.formLogin = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+      nome: ['', [Validators.required]],
       senha: ['', [Validators.required]],
     });
   }
 
   logar() {
     if (this.formLogin.invalid) return;
-    var usuario = this.formLogin.getRawValue() as IUsuario;
-    this.usuarioService.logar(usuario)
+    var usuario = this.formLogin.getRawValue() as Usuario;
+    //usuario.ativo = true;
+    console.log(usuario);
+    console.log(JSON.stringify(usuario));
+    if (
+      this.loginService.logar(usuario).subscribe(
+        () => {
+          this.router.navigateByUrl('/');
+        },
+        (err) => {
+          console.log(err);
+        }
+      )
+    ) {
+    }
+
+    //this.router.navigateByUrl('/')
   }
 }

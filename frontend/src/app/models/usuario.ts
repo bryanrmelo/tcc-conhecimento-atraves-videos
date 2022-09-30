@@ -1,5 +1,10 @@
+import { Link } from "./link";
+
 export class Usuario {
 
-    login!: string
-    senha!: string
+    id!: number;
+    nome!: string;
+    senha!: string;
+    ativo!: boolean;
+    _links!: Array<Link>[];
 }
