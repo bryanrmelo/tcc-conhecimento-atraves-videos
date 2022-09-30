@@ -18,18 +18,12 @@ public class UsuarioAssembler implements SimpleRepresentationModelAssembler<Usua
     @Override
     public void addLinks(EntityModel<Usuario> resource) {
         Long id = resource.getContent().getId();
-        String nome = resource.getContent().getNome();
-        String senha = resource.getContent().getSenha();
 
         Link selfLink = linkTo(methodOn(UsuarioControleApi.class).buscarPorId(id))
                 .withSelfRel()
                 .withType("GET");
 
-        Link nomeLink = linkTo(methodOn(UsuarioControleApi.class).logar(nome, senha))
-                .withSelfRel()
-                .withType("POST");
-
-        resource.add(selfLink, nomeLink);
+        resource.add(selfLink);
     }
 
     @Override
