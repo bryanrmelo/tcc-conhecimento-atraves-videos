@@ -10,8 +10,9 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.ifrs.conhecimentoatravesvideos.api.hateoas.UsuarioAssembler;
@@ -20,7 +21,7 @@ import edu.ifrs.conhecimentoatravesvideos.servicos.UsuarioServico;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("api/v1/usuarios")
+@RequestMapping("api/v1")
 public class UsuarioControleApi {
 
     @Autowired
@@ -33,15 +34,23 @@ public class UsuarioControleApi {
     private PagedResourcesAssembler<Usuario> pagedResourcesAssembler;
 
     @GetMapping
-    public CollectionModel<EntityModel<Usuario>> buscarTodos(@PageableDefault(sort = {"id"}, direction = Direction.ASC) Pageable paginacao) {
+    public CollectionModel<EntityModel<Usuario>> buscarTodos(
+            @PageableDefault(sort = { "id" }, direction = Direction.ASC) Pageable paginacao) {
         Page<Usuario> usuarios = usuarioServico.buscarTodos(paginacao);
 
         return pagedResourcesAssembler.toModel(usuarios, usuarioAssembler);
     }
 
-    @GetMapping("/{id}")
-    public EntityModel<Usuario> buscarPorId(@PathVariable Long id) {
+    @GetMapping(value = "/usuarios", params = "id")
+    public EntityModel<Usuario> buscarPorId(@RequestParam Long id) {
         Usuario usuario = usuarioServico.buscarPorId(id);
+
+        return usuarioAssembler.toModel(usuario);
+    }
+
+    @PostMapping("/usuarios/logar")
+    public EntityModel<Usuario> logar(@RequestParam String nome, String senha) {
+        Usuario usuario = usuarioServico.buscarPorNome(nome);
 
         return usuarioAssembler.toModel(usuario);
     }

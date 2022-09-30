@@ -44,4 +44,13 @@ public class UsuarioServico {
         return null;
     }
 
+    public Usuario buscarPorNome(String nome) {
+        Optional<Usuario> u = usuarioRepositorio.findByNome(nome);
+        try {
+            return u.get();
+        } catch (NoSuchElementException e) {
+            return null;
+        }
+    }
+
 }

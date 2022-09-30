@@ -3,6 +3,7 @@ package edu.ifrs.conhecimentoatravesvideos.repositorios;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,5 +14,8 @@ import edu.ifrs.conhecimentoatravesvideos.model.Usuario;
 public interface UsuarioRepositorio extends JpaRepository<Usuario, Long> {
 
     Optional<Usuario> findByNome(String nome);
+
+    @Query(value = "SELECT count(*) FROM usuario WHERE nome = ?1 AND senha = ?2", nativeQuery = true)
+    int exists(String nome, String senha);
     
 }
