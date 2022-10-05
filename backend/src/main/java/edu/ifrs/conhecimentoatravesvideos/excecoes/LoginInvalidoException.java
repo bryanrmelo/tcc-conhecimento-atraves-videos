@@ -8,6 +8,6 @@ public class LoginInvalidoException extends RuntimeException {
 
     @Override
     public String getMessage() {
-        return "Login inválido";
+        return "Login invalido";
     }
 }
