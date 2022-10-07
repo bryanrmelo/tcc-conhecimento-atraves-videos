@@ -6,5 +6,6 @@ export class Usuario {
     nome!: string;
     senha!: string;
     ativo!: boolean;
+    perfil!: string;
     _links!: Array<Link>[];
 }

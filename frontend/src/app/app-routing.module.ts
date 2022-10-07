@@ -6,7 +6,7 @@ import { HomeComponent } from './components/home';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent},
   { path: 'sidebar', component: SidebarComponent },
   { path: 'login', component: LoginComponent },
   {
