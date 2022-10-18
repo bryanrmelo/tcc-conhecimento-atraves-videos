@@ -1,7 +1,7 @@
 <div class="card-group container">
   <div *ngFor="let video of videos">
     <div class="card shadow" style="width: 20rem">
-      <a [routerLink]="['/assistir', video.id.videoId]">
+      <a [routerLink]="['/video/assistir', video.id.videoId]">
         <img
           [src]="video.snippet.thumbnails.medium.url"
           class="card-img-top"
@@ -9,7 +9,7 @@
       /></a>
       <div class="card-body text-center">
         <h5 class="card-title mb-0">
-          <a [routerLink]="['/assistir', video.id.videoId]"
+          <a [routerLink]="['/video/assistir', video.id.videoId]"
             >{{ video.snippet.title }}
           </a>
         </h5>
@@ -18,5 +18,23 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+<div>
+  <div class="dropup">
+    <button
+      type="button"
+      id="fixed-button"
+      class="btn btn-danger btn-circle btn-xl dropdown-toogle"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      <i class="fas fa-upload"></i>
+    </button>
+    <ul class="dropdown-menu bg-danger">
+      <li><a class="text-white text-center" routerLink="/video/enviar">Vídeo</a></li>
+      <li><a class="text-white text-center" routerLink="/fonte/enviar">Fonte</a></li>
+
+    </ul>
   </div>
 </div>
