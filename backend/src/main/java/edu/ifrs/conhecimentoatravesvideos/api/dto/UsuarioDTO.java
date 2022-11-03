@@ -7,7 +7,6 @@ public class UsuarioDTO extends EntidadeDTO {
     
     @NotNull
     private String nome;
-
     
     @Size(min = 5, max = 255)
     @NotNull

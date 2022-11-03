@@ -21,14 +21,15 @@ public class LoginServico {
     public boolean validar(UsuarioDTO usuarioDTO) throws LoginInvalidoException {
         Usuario usuario = usuarioMapeador.converterParaEntidade(usuarioDTO);
         Usuario usuarioDb = usuarioRepositorio.getByNomeUsuario(usuario.getNome());
-
+        //System.out.println(BCrypt.hashpw(usuario.getSenha(), "$2a$12$8s6qu3dz6kpzuLYUzMR1QuTTAakcMRMsf2aptaFiUJ4wjtgsErrZq"));
         usuario.encodeSenha(usuario.getSenha(), usuarioDb.getHash());
-
+                 
         if (usuario.getSenha().equals(usuarioDb.getSenha())) {
             return true;
         } else {
             throw new LoginInvalidoException();
         }
+        
     }
 
 }

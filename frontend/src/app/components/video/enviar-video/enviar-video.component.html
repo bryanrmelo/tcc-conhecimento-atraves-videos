@@ -1,1 +1,43 @@
-<p>enviar-video works!</p>
+<div class="container">
+  <form class="row g-3">
+    <div class="col-12">
+      <label class="form-label">Link do vídeo</label>
+      <input class="form-control" type="text" />
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Título do vídeo</label>
+      <input class="form-control" type="text" />
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Autor do vídeo</label>
+      <input class="form-control" type="text" />
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Privacidade</label>
+      <select class="form-select" aria-label="Default select example">
+        <option selected>Selecione..</option>
+        <option value="1">Público</option>
+        <option value="2">Privado</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Categoria</label>
+      <select class="form-select" aria-label="Default select example">
+        <option selected>Selecione..</option>
+        <option value="1">Científico</option>
+        <option value="2">Acadêmico</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Playlist</label>
+      <select class="form-select" aria-label="Default select example">
+        <option selected>Selecione..</option>
+        <option value="1"></option>
+      </select>
+    </div>
+    <span style="display: inline; margin-top: 50px;">
+      <button class="m-1 p-1 btn btn-success" type="submit" (submit)="submit()">Salvar</button>
+      <button class="m-1 p-1 btn btn-danger" type="button" (click)="voltar()">Cancelar</button>
+    </span>
+  </form>
+</div>
