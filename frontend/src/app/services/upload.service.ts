@@ -11,14 +11,10 @@ export class UploadService {
 
   constructor(private httpClient: HttpClient) { }
 
-  postFile(fileToUpload: File): Observable<boolean> {
+  postFile(fileToUpload: File) {
     const formData: FormData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
     console.log('Pré post')
-    return this.httpClient.post(this.url, formData).pipe(
-      map(() => {
-        return true;
-      })
-    );
+    this.httpClient.post(this.url, formData)
   }
 }
