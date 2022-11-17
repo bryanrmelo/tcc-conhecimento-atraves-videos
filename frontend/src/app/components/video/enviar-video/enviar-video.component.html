@@ -1,23 +1,23 @@
 <div class="container">
-  <form class="row g-3">
+  <form [formGroup]="formUpload" (ngSubmit)="submit()" class="row g-3">
     <div class="col-12">
       <label class="form-label">Link do vídeo</label>
-      <input class="form-control" type="text" />
+      <input class="form-control" type="text" formControlName="link" />
     </div>
     <div class="col-md-6">
       <label class="form-label">Título do vídeo</label>
-      <input class="form-control" type="text" />
+      <input class="form-control" type="text" formControlName="titulo" />
     </div>
     <div class="col-md-6">
       <label class="form-label">Autor do vídeo</label>
-      <input class="form-control" type="text" />
+      <p class="form-control"> {{this.usuario.nome}}</p>
     </div>
     <div class="col-md-4">
       <label class="form-label">Privacidade</label>
-      <select class="form-select" aria-label="Default select example">
+      <select class="form-select" aria-label="Default select example" formControlName="privado">
         <option selected>Selecione..</option>
-        <option value="1">Público</option>
-        <option value="2">Privado</option>
+        <option value="false">Público</option>
+        <option value="true">Privado</option>
       </select>
     </div>
     <div class="col-md-4">

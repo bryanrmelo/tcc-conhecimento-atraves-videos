@@ -15,6 +15,9 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MaterialModule } from './material/material.module';
 import { EnviarVideoComponent } from './components/video/enviar-video/enviar-video.component';
 import { EnviarFonteComponent } from './components/fonte/enviar-fonte/enviar-fonte.component';
+import { UsuarioComponent } from './components/usuario/usuario.component';
+import { EditarComponent } from './components/usuario/editar/editar.component';
+
 
 
 @NgModule({
@@ -25,7 +28,9 @@ import { EnviarFonteComponent } from './components/fonte/enviar-fonte/enviar-fon
     SidebarComponent,
     AssistirComponent,
     EnviarVideoComponent,
-    EnviarFonteComponent
+    EnviarFonteComponent,
+    UsuarioComponent,
+    EditarComponent
   ],
   imports: [
     BrowserModule,

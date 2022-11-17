@@ -26,10 +26,7 @@ export class LoginService {
   }
 
   logar(usuario: Usuario) {
-
-    console.log(this.currentUser);
     if (this.currentUser == null) {
-      console.log('login');
       return this.httpClient
         .post<Usuario>(
           `${this.url}/autenticar`,
@@ -40,12 +37,12 @@ export class LoginService {
           map((user) => {
             localStorage.setItem('currentUser', JSON.stringify(user));
             console.log('TCL: AuthenticationService -> login -> user', user);
-            console.log(`LOCALSTORAGE: ${localStorage.getItem('currentUser')}`)
             return user;
           })
         );
     } else {
       this.router.navigateByUrl('/');
+      location.reload()
       return null;
     }
   }

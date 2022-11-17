@@ -116,12 +116,12 @@
         </button>
       </form>
       <div d-flex align-self-center>
-        <a [hidden]="!user" routerLink="/login">
+        <a *ngIf="!user" routerLink="/login">
           <i class="fas fa-user"></i>
         </a>
-        <a [hidden]="user" class="ms-3" (click)="logout()">
-          <i class="fas fa-sign-out"></i>
-        </a>
+        <button *ngIf="user" class="ms-3" (click)="logout()">
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
         <a class="ms-3" routerLink="/configs">
           <i class="fas fa-cog"></i>
         </a>
