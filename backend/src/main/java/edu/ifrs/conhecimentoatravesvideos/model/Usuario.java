@@ -1,7 +1,11 @@
 package edu.ifrs.conhecimentoatravesvideos.model;
 
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
 import org.springframework.hateoas.server.core.Relation;
@@ -27,6 +31,9 @@ public class Usuario extends Entidade {
 
     @Column(nullable = false)
     private boolean ativo;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Playlist> playlists;
 
     public String getNome() {
         return nome;
@@ -70,6 +77,14 @@ public class Usuario extends Entidade {
         this.ativo = ativo;
     }
 
+    public List<Playlist> getPlaylists() {
+        return this.playlists;
+    }
+
+    public void setPlaylists(List<Playlist> playlists) {
+        this.playlists = playlists;
+    }
+    
     @Override
     public String toString() {
         return "{" +

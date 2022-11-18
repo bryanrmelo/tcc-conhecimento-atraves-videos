@@ -4,18 +4,13 @@
       <label class="form-label">Link do vídeo</label>
       <input class="form-control" type="text" formControlName="link" />
     </div>
-    <div class="col-md-6">
+    <div class="col-12">
       <label class="form-label">Título do vídeo</label>
       <input class="form-control" type="text" formControlName="titulo" />
-    </div>
-    <div class="col-md-6">
-      <label class="form-label">Autor do vídeo</label>
-      <p class="form-control"> {{this.usuario.nome}}</p>
     </div>
     <div class="col-md-4">
       <label class="form-label">Privacidade</label>
       <select class="form-select" aria-label="Default select example" formControlName="privado">
-        <option selected>Selecione..</option>
         <option value="false">Público</option>
         <option value="true">Privado</option>
       </select>
