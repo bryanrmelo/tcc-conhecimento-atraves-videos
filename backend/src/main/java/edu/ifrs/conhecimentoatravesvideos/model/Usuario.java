@@ -1,7 +1,6 @@
 package edu.ifrs.conhecimentoatravesvideos.model;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,11 +31,37 @@ public class Usuario extends Entidade {
     @Column(nullable = false)
     private boolean ativo;
 
-    @OneToMany(mappedBy = "usuario")
-    private List<Playlist> playlists;
+    @JsonIgnore
+    @OneToMany(mappedBy = "autor")
+    private List<Video> videos;
+
+    /*
+     * @OneToMany(mappedBy = "usuario")
+     * private List<Playlist> playlists;
+     */
+
+    public Usuario() {
+
+    }
+
+    public Usuario(String autor) {
+        this.nome = autor;
+    }
 
     public String getNome() {
         return nome;
+    }
+
+    public boolean getAtivo() {
+        return this.ativo;
+    }
+
+    public List<Video> getVideos() {
+        return this.videos;
+    }
+
+    public void setVideos(List<Video> videos) {
+        this.videos = videos;
     }
 
     public void setNome(String nome) {
@@ -77,14 +102,15 @@ public class Usuario extends Entidade {
         this.ativo = ativo;
     }
 
-    public List<Playlist> getPlaylists() {
-        return this.playlists;
-    }
-
-    public void setPlaylists(List<Playlist> playlists) {
-        this.playlists = playlists;
-    }
-    
+    /*
+     * public List<Playlist> getPlaylists() {
+     * return this.playlists;
+     * }
+     * 
+     * public void setPlaylists(List<Playlist> playlists) {
+     * this.playlists = playlists;
+     * }
+     */
     @Override
     public String toString() {
         return "{" +

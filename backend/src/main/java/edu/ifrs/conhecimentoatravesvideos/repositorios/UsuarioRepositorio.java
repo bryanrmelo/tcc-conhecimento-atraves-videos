@@ -13,6 +13,7 @@ import edu.ifrs.conhecimentoatravesvideos.model.Usuario;
 @Transactional
 public interface UsuarioRepositorio extends JpaRepository<Usuario, Long> {
 
+    @Query(value = "SELECT u FROM Usuario u WHERE nome = ?1", nativeQuery = true)
     Optional<Usuario> findByNome(String nome);
 
     @Query(value = "SELECT count(*) FROM usuario WHERE nome = ?1 AND senha = ?2 AND ativo = true", nativeQuery = true)

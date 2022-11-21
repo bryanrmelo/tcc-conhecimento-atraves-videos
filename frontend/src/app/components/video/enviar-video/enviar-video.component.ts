@@ -26,14 +26,14 @@ export class EnviarVideoComponent implements OnInit {
   ngOnInit(): void {
     this.usuario = JSON.parse(localStorage.getItem('currentUser'));
     this.criarForm();
-    this.getPlaylistsByUser();
+    //this.getPlaylistsByUser();
   }
 
   criarForm() {
     this.formUpload = this.formBuilder.group({
       titulo: ['', [Validators.required]],
       link: ['', [Validators.required]],
-      autor: [this.usuario, [Validators.required]],
+      autor: [this.usuario.nome, [Validators.required]],
       privado: ['', [Validators.required]],
       categoria: ['', [Validators.required]],
     });

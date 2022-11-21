@@ -1,47 +1,74 @@
 package edu.ifrs.conhecimentoatravesvideos.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Video extends Entidade {
 
-    private String nome;
-    private String url;
-    private String descricao;
-    // private Autor autor;
-    // private Playlist playlist;
+    @Column(nullable = false)
+    private String titulo;
 
-    public String getNome() {
-        return nome;
+    @Column(nullable = false)
+    private String link;
+
+    @Column(nullable = false)
+    private String categoria;
+
+    @Column(nullable = false)
+    private boolean privado;
+
+    @ManyToOne
+    @JoinColumn(name="autor_id", nullable = false)
+    private Usuario autor;
+
+    public String getTitulo() {
+        return this.titulo;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
-    public String getUrl() {
-        return url;
+    public String getLink() {
+        return this.link;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setLink(String link) {
+        this.link = link;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getCategoria() {
+        return this.categoria;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public boolean isPrivado() {
+        return this.privado;
+    }
+
+    public boolean getPrivado() {
+        return this.privado;
+    }
+
+    public void setPrivado(boolean privado) {
+        this.privado = privado;
+    }
+
+    public Usuario getAutor() {
+        return autor;
+    }
+
+    public void setAutor(Usuario autor) {
+        this.autor = autor;
     }
     /*
-     * public Autor getAutor() {
-     * return autor;
-     * }
-     * 
-     * public void setAutor(Autor autor) {
-     * this.autor = autor;
-     * }
+     * private Playlist playlist;
      * 
      * public Playlist getPlaylist() {
      * return playlist;
