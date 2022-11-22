@@ -35,10 +35,9 @@ public class Usuario extends Entidade {
     @OneToMany(mappedBy = "autor")
     private List<Video> videos;
 
-    /*
-     * @OneToMany(mappedBy = "usuario")
-     * private List<Playlist> playlists;
-     */
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario")
+    private List<Playlist> playlists;
 
     public Usuario() {
 
@@ -102,15 +101,14 @@ public class Usuario extends Entidade {
         this.ativo = ativo;
     }
 
-    /*
-     * public List<Playlist> getPlaylists() {
-     * return this.playlists;
-     * }
-     * 
-     * public void setPlaylists(List<Playlist> playlists) {
-     * this.playlists = playlists;
-     * }
-     */
+    public List<Playlist> getPlaylists() {
+        return this.playlists;
+    }
+
+    public void setPlaylists(List<Playlist> playlists) {
+        this.playlists = playlists;
+    }
+
     @Override
     public String toString() {
         return "{" +

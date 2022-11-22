@@ -1,4 +1,4 @@
-import { Playlist } from './Playlist';
+import { Playlist } from './playlist';
 import { Usuario } from './usuario';
 export class Video {
 

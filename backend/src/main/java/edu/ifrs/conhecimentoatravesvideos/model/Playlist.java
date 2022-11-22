@@ -12,7 +12,7 @@ public class Playlist extends Entidade {
     private String nome;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
+    @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 
     public String getNome() {
