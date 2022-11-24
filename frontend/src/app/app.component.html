@@ -110,9 +110,10 @@
           type="search"
           placeholder="Pesquisar"
           aria-label="Search"
+          [(ngModel)]="search" name="search"
         />
-        <button mat-button class="btn btn-dark" type="submit">
-          <mat-icon>search</mat-icon>
+        <button class="btn btn-dark" type="submit">
+          <i class="fas fa-search"></i>
         </button>
       </form>
       <div d-flex align-self-center>

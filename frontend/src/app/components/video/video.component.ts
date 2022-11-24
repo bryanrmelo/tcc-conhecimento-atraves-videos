@@ -3,11 +3,11 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-assistir',
-  templateUrl: './assistir.component.html',
-  styleUrls: ['./assistir.component.css'],
+  selector: 'app-video',
+  templateUrl: './video.component.html',
+  styleUrls: ['./video.component.css'],
 })
-export class AssistirComponent implements OnInit {
+export class VideoComponent implements OnInit {
   safeSrc!: SafeResourceUrl;
   id!: number;
 

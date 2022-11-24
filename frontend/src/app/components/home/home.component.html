@@ -1,7 +1,7 @@
 <div class="card-group container">
   <div *ngFor="let video of videos">
     <div class="card shadow" style="width: 20rem">
-      <a [routerLink]="['/video/assistir', video.id.videoId]">
+      <a [routerLink]="['/video', video.id.videoId]">
         <img
           [src]="video.snippet.thumbnails.medium.url"
           class="card-img-top"
@@ -9,7 +9,7 @@
       /></a>
       <div class="card-body text-center">
         <h5 class="card-title mb-0">
-          <a [routerLink]="['/video/assistir', video.id.videoId]"
+          <a [routerLink]="['/video', video.id.videoId]"
             >{{ video.snippet.title }}
           </a>
         </h5>

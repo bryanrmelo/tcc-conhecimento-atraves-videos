@@ -1,5 +1,7 @@
 package edu.ifrs.conhecimentoatravesvideos.servicos;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +25,13 @@ public class VideoServico  {
     public Video salvar(VideoDTO videoDTO) {
         
         Video video = videoMapeador.converterParaEntidade(videoDTO);
-        video.setAutor(usuarioServico.buscarPorNome(video.getAutor().getNome()));
+        video.setAutor(usuarioServico.buscarPorNome(video. getAutor().getNome()));
         
         return videoRepositorio.save(video);
+    }
+
+    public List<Video> buscarPorNome(String nome) {
+        return videoRepositorio.findByNome(nome);
     }
 
     /* 

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -8,17 +8,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthModule } from '@auth0/auth0-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AssistirComponent } from './components/video/assistir/assistir.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MaterialModule } from './material/material.module';
-import { EnviarVideoComponent } from './components/video/enviar-video/enviar-video.component';
 import { EnviarFonteComponent } from './components/fonte/enviar-fonte/enviar-fonte.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { EditarComponent } from './components/usuario/editar/editar.component';
-
-
+import { VideoComponent } from './components/video/video.component';
+import { EnviarVideoComponent } from './components/video/enviar/enviar.component';
 
 @NgModule({
   declarations: [
@@ -26,11 +24,11 @@ import { EditarComponent } from './components/usuario/editar/editar.component';
     LoginComponent,
     HomeComponent,
     SidebarComponent,
-    AssistirComponent,
+    VideoComponent,
     EnviarVideoComponent,
     EnviarFonteComponent,
     UsuarioComponent,
-    EditarComponent
+    EditarComponent,
   ],
   imports: [
     BrowserModule,

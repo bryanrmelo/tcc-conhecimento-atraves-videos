@@ -10,14 +10,22 @@
     </div>
     <div class="col-md-4">
       <label class="form-label">Privacidade</label>
-      <select class="form-select" aria-label="Default select example" formControlName="privado">
+      <select
+        class="form-select"
+        aria-label="Default select example"
+        formControlName="privado"
+      >
         <option value="false">Público</option>
         <option value="true">Privado</option>
       </select>
     </div>
     <div class="col-md-4">
       <label class="form-label">Categoria</label>
-      <select class="form-select" aria-label="Default select example" formControlName="categoria">
+      <select
+        class="form-select"
+        aria-label="Default select example"
+        formControlName="categoria"
+      >
         <option value="cientifico">Científico</option>
         <option value="academico">Acadêmico</option>
       </select>
@@ -26,13 +34,18 @@
       <label class="form-label">Playlist</label>
       <select class="form-select" aria-label="Default select example">
         <option value="default"></option>
-        <option *ngFor="let playlist of playlists" value={{playlist.id}}>{{ playlist.nome }}</option>
+        <option *ngFor="let playlist of playlists" value="{{ playlist.id }}">
+          {{ playlist.nome }}
+        </option>
       </select>
     </div>
-    <span style="display: inline; margin-top: 50px;">
-      <button class="m-1 p-1 btn btn-success" type="submit" (submit)="submit()">Salvar</button>
-      <button class="m-1 p-1 btn btn-danger" type="button" (click)="voltar()">Cancelar</button>
+    <span style="display: inline; margin-top: 50px">
+      <button class="m-1 p-1 btn btn-success" type="submit" (submit)="submit()">
+        Salvar
+      </button>
+      <button class="m-1 p-1 btn btn-danger" type="button" (click)="voltar()">
+        Cancelar
+      </button>
     </span>
   </form>
 </div>
-
