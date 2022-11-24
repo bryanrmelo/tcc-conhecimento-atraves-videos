@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { map, Observable } from 'rxjs';
+import { firstValueFrom, map, Observable } from 'rxjs';
 import { Playlist } from 'src/app/models/playlist';
 import { Usuario } from 'src/app/models/usuario';
 import { UploadService } from './../../../services/upload.service';
@@ -27,7 +27,8 @@ export class EnviarVideoComponent implements OnInit {
   ngOnInit(): void {
     this.usuario = JSON.parse(localStorage.getItem('currentUser'));
     this.criarForm();
-    //this.getPlaylistsByUser();
+    this.getPlaylistsByUser();
+    console.log(this.playlists);
   }
 
   criarForm() {
@@ -47,16 +48,14 @@ export class EnviarVideoComponent implements OnInit {
         this.playlists = playlists;
         console.log(this.playlists);
       });
+    }
     /*
-      console.log(this.playlists)
-      this.videoService.getPlaylistsByUserId(this.usuario.id).pipe(
-        map((data: any) => {
-          console.log(data);
-          return data;
-        })
-        );
-        */
-  }
+    async getPlaylistsByUser() {
+      this.playlists = await firstValueFrom(
+        this.videoService.getPlaylistsByUserId(this.usuario.id)
+      )
+      console.log(this.playlists);
+    */
 
   submit() {
     this.uploadService.enviarVideo(this.formUpload);
