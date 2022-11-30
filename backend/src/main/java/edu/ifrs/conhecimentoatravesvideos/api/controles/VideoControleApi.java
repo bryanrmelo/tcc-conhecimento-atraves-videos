@@ -62,8 +62,6 @@ public class VideoControleApi {
     @PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE,MediaType.MULTIPART_FORM_DATA_VALUE })
     @ResponseStatus(code = HttpStatus.CREATED)
     public EntityModel<Video> salvar(@RequestBody VideoDTO videoDTO) {
-        System.out.println(videoDTO.toString());
-
         Video video = videoServico.salvar(videoDTO);
 
         return videoAssembler.toModel(video);

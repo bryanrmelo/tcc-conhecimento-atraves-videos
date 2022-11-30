@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { EnviarVideoComponent } from './components/video/enviar-video';
+import { EnviarVideoComponent } from './components/video/enviar/enviar.component';
 import { EnviarFonteComponent } from './components/fonte/enviar-fonte';
 import { VideoComponent } from './components/video/video.component';
 

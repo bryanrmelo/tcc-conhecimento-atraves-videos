@@ -18,7 +18,6 @@ export class VideoService {
   }
 
   getPlaylistsByUserId(id: number): Observable<Playlist[]> {
-    console.log(id);
     return this.httpClient.get(`${this.url}/video/playlist/${id}`).pipe(
       map((data: any) => {
         return data._embedded.playlistList as Playlist[];

@@ -27,7 +27,6 @@ export class EnviarVideoComponent implements OnInit {
     this.usuario = JSON.parse(localStorage.getItem('currentUser'));
     this.criarForm();
     this.getPlaylistsByUser();
-    console.log(this.playlists);
   }
 
   criarForm() {
@@ -45,7 +44,6 @@ export class EnviarVideoComponent implements OnInit {
       .getPlaylistsByUserId(this.usuario.id)
       .subscribe((playlists: Playlist[]) => {
         this.playlists = playlists;
-        console.log(this.playlists);
       });
   }
   /*
