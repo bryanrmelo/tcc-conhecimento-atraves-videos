@@ -15,11 +15,9 @@ export class AppComponent {
   title = 'Conhecimento entre videos';
   user = localStorage.getItem('currentUser');
   videos: Video[];
-  search : String = "teste";
+  search: String = 'teste';
 
   constructor(
-    private spinner: NgxSpinnerService,
-    private youTubeService: YoutubeService,
     private loginService: LoginService,
     private videoService: VideoService
   ) {
@@ -27,9 +25,13 @@ export class AppComponent {
   }
 
   buscarVideoPorNome() {
-    return this.videoService.getVideosByName(this.search).subscribe((videos : Video[]) => {
-      this.videos = videos;
-    });
+    console.log(this.search);
+    return this.videoService
+      .getVideosByName(this.search)
+      .subscribe((videos: Video[]) => {
+        this.videos = videos;
+        console.log(videos);
+      });
   }
 
   logout() {
@@ -38,6 +40,5 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
-    console.log(this.user);
   }
 }

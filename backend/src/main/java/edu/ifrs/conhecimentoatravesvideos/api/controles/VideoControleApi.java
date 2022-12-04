@@ -59,10 +59,12 @@ public class VideoControleApi {
         return videoAssembler.toCollectionModel(videos);
     }
 
-    @PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE,MediaType.MULTIPART_FORM_DATA_VALUE })
+    @PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE })
     @ResponseStatus(code = HttpStatus.CREATED)
     public EntityModel<Video> salvar(@RequestBody VideoDTO videoDTO) {
         Video video = videoServico.salvar(videoDTO);
+
+        System.out.println("OK");
 
         return videoAssembler.toModel(video);
     }

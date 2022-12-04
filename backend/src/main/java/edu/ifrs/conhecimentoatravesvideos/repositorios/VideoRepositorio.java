@@ -1,6 +1,7 @@
 package edu.ifrs.conhecimentoatravesvideos.repositorios;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -13,8 +14,8 @@ import edu.ifrs.conhecimentoatravesvideos.model.Video;
 @Transactional
 public interface VideoRepositorio extends JpaRepository<Video, Long> {
 
-    @Query(value = "SELECT v FROM Video v WHERE nome = ?1", nativeQuery = true)
-    List<Video> findByNome(String nome);
-    
-    //Pageable findAll(Pageable page);
+    @Query(value = "SELECT * FROM video WHERE titulo = ?1", nativeQuery = true)
+    Optional<List<Video>> findByNome(String nome);
+
+    // Pageable findAll(Pageable page);
 }

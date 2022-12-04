@@ -112,7 +112,7 @@
           aria-label="Search"
           [(ngModel)]="search" name="search"
         />
-        <button class="btn btn-dark" type="submit">
+        <button class="btn btn-dark" type="submit" (click)="buscarVideoPorNome()">
           <i class="fas fa-search"></i>
         </button>
       </form>

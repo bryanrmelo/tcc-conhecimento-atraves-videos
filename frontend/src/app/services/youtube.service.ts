@@ -42,4 +42,19 @@ export class YoutubeService {
       })
     );
   }
+
+  getVideo(channel: string, maxResults: number): Observable<Object> {
+    let url =
+      'https://www.googleapis.com/youtube/v3/search?key=' +
+      this.apiKey +
+      '&forUsername=' +
+      channel +
+      '&part=id&order=date&part=snippet &type=video,id&maxResults=' +
+      maxResults;
+    return this.http.get(url).pipe(
+      map((res) => {
+        return res;
+      })
+    );
+  }
 }

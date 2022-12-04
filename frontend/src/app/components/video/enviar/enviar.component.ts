@@ -55,7 +55,8 @@ export class EnviarVideoComponent implements OnInit {
     */
 
   submit() {
-    this.uploadService.enviarVideo(this.formUpload);
+    console.log("UPLOAD")
+    this.uploadService.enviarVideo(this.formUpload)
   }
 
   voltar() {

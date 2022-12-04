@@ -1,27 +1,40 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
-import { Video } from '../models/video';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UploadService {
-
   url = 'http://localhost:8080/api/v1';
+  headersJSON = new HttpHeaders({
+    'Content-Type': 'application/json; charset=utf-8',
+  });
+  headersMULTIPART = new HttpHeaders({
+    'Content-Type': 'multipart/form-data; charset=utf-8',
+  });
+  formData: FormData = new FormData();
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   postFile(fileToUpload: File) {
-    const formData: FormData = new FormData();
-    formData.append('file', fileToUpload, fileToUpload.name);
-    console.log('Pré post')
-    console.log(formData)
-    this.httpClient.post(`${this.url}/fonte`, formData)
+    this.formData.append('file', fileToUpload, fileToUpload.name);
+    console.log('Pré post');
+    console.log(this.formData);
+    this.httpClient
+      .post(`${this.url}/fonte`, this.formData)
+      .subscribe((data) => {
+        return data;
+      });
   }
+
   enviarVideo(formUpload: FormGroup<any>) {
-    console.log(JSON.stringify(formUpload.getRawValue()))
-    this.httpClient.post(`${this.url}/video`, JSON.stringify(formUpload.getRawValue()))
+    this.httpClient
+      .post(`${this.url}/video`, JSON.stringify(formUpload.getRawValue()), {
+        headers: this.headersJSON,
+      })
+      .subscribe((data) => {
+        return data;
+      });
   }
 }
