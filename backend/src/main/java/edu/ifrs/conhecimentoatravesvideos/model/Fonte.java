@@ -9,7 +9,18 @@ import javax.persistence.Entity;
 public class Fonte extends Entidade {
 
     @Column(nullable = false)
+    private String nome;
+
+    @Column(nullable = false)
     private Blob texto;
+
+    public String getNome() {
+        return this.nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
     public Blob getTexto() {
         return this.texto;

@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -21,4 +20,7 @@ public interface PlaylistRepositorio extends JpaRepository<Playlist, Long> {
 
     @Query("SELECT p FROM Playlist p JOIN Usuario u ON p.usuario = u.id WHERE p.usuario = :id")
     List<Playlist> findPlaylistByUsuario(@Param("id") Usuario usuario);
+
+    @Query(value = "SELECT * FROM playlist WHERE nome = ?1 AND usuario_id = ?2", nativeQuery = true)
+    Playlist getByNome(String nome, long id);
 }

@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import edu.ifrs.conhecimentoatravesvideos.api.hateoas.PlaylistAssembler;
 import edu.ifrs.conhecimentoatravesvideos.model.Playlist;
-import edu.ifrs.conhecimentoatravesvideos.model.Usuario;
 import edu.ifrs.conhecimentoatravesvideos.servicos.PlaylistServico;
 import edu.ifrs.conhecimentoatravesvideos.servicos.UsuarioServico;
 

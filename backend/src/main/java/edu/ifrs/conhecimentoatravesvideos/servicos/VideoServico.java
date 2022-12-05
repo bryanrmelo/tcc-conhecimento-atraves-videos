@@ -20,12 +20,17 @@ public class VideoServico {
     private UsuarioServico usuarioServico;
 
     @Autowired
+    private PlaylistServico playlistServico;
+
+    @Autowired
     private VideoMapeador videoMapeador;
 
     public Video salvar(VideoDTO videoDTO) {
 
         Video video = videoMapeador.converterParaEntidade(videoDTO);
         video.setAutor(usuarioServico.buscarPorNome(video.getAutor().getNome()));
+        System.out.println(video.getPlaylist().getId());
+        video.setPlaylist(playlistServico.buscarPorId(video.getPlaylist().getId()));
 
         System.out.println(video.toString());
 

@@ -4,9 +4,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Video extends Entidade {
+
+    
 
     @Column(nullable = false)
     private String titulo;
@@ -21,8 +24,16 @@ public class Video extends Entidade {
     private boolean privado;
 
     @ManyToOne
-    @JoinColumn(name="autor_id", nullable = false)
+    @JoinColumn(name = "autor_id", nullable = false)
     private Usuario autor;
+
+    @ManyToOne
+    @JoinColumn(name = "playlist_id", nullable = false)
+    private Playlist playlist;
+
+    @OneToOne
+    @JoinColumn(name = "fonte_id", nullable = false)
+    private Fonte fonte;
 
     public String getTitulo() {
         return this.titulo;
@@ -61,21 +72,40 @@ public class Video extends Entidade {
     }
 
     public Usuario getAutor() {
-        return autor;
+        return this.autor;
     }
 
     public void setAutor(Usuario autor) {
         this.autor = autor;
     }
-    /*
-     * private Playlist playlist;
-     * 
-     * public Playlist getPlaylist() {
-     * return playlist;
-     * }
-     * 
-     * public void setPlaylist(Playlist playlist) {
-     * this.playlist = playlist;
-     * }
-     */
+
+    public Playlist getPlaylist() {
+        return this.playlist;
+    }
+
+    public void setPlaylist(Playlist playlist) {
+        this.playlist = playlist;
+    }
+
+    public Fonte getFonte() {
+        return this.fonte;
+    }
+
+    public void setFonte(Fonte fonte) {
+        this.fonte = fonte;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " titulo='" + getTitulo() + "'" +
+            ", link='" + getLink() + "'" +
+            ", categoria='" + getCategoria() + "'" +
+            ", privado='" + isPrivado() + "'" +
+            ", autor='" + getAutor() + "'" +
+            ", playlist='" + getPlaylist() + "'" +
+            ", fonte='" + getFonte() + "'" +
+            "}";
+    }
+
 }

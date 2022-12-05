@@ -36,6 +36,7 @@ export class EnviarVideoComponent implements OnInit {
       autor: [this.usuario.nome, [Validators.required]],
       privado: ['', [Validators.required]],
       categoria: ['', [Validators.required]],
+      playlist: [''],
     });
   }
 
@@ -55,7 +56,6 @@ export class EnviarVideoComponent implements OnInit {
     */
 
   submit() {
-    console.log("UPLOAD")
     this.uploadService.enviarVideo(this.formUpload)
   }
 

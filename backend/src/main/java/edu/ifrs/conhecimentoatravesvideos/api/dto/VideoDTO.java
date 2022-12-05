@@ -1,13 +1,6 @@
 package edu.ifrs.conhecimentoatravesvideos.api.dto;
 
 import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import edu.ifrs.conhecimentoatravesvideos.model.Usuario;
-
 
 public class VideoDTO extends EntidadeDTO {
 
@@ -23,7 +16,11 @@ public class VideoDTO extends EntidadeDTO {
     @Column(nullable = false)
     private boolean privado;
 
+    @Column(nullable = false)
     private String autor;
+
+    @Column(nullable = false)
+    private Long playlist;
 
     public String getTitulo() {
         return this.titulo;
@@ -69,15 +66,23 @@ public class VideoDTO extends EntidadeDTO {
         this.autor = autor;
     }
 
+    public Long getPlaylist() {
+        return this.playlist;
+    }
+
+    public void setPlaylist(Long playlist) {
+        this.playlist = playlist;
+    }
+
     @Override
     public String toString() {
         return "{" +
-            " titulo='" + getTitulo() + "'" +
-            ", link='" + getLink() + "'" +
-            ", categoria='" + getCategoria() + "'" +
-            ", privado='" + isPrivado() + "'" +
-            ", autor='" + getAutor() + "'" +
-            "}";
+                " titulo='" + getTitulo() + "'" +
+                ", link='" + getLink() + "'" +
+                ", categoria='" + getCategoria() + "'" +
+                ", privado='" + isPrivado() + "'" +
+                ", autor='" + getAutor() + "'" +
+                "}";
     }
-   
+
 }

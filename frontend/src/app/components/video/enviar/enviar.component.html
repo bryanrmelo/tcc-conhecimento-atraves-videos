@@ -32,7 +32,7 @@
     </div>
     <div class="col-md-4">
       <label class="form-label">Playlist</label>
-      <select class="form-select" aria-label="Default select example">
+      <select class="form-select" aria-label="Default select example" formControlName="playlist">
         <option value="default"></option>
         <option *ngFor="let playlist of playlists" value="{{ playlist.id }}">
           {{ playlist.nome }}

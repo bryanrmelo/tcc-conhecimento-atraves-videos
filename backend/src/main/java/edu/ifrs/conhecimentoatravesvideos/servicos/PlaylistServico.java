@@ -1,6 +1,8 @@
 package edu.ifrs.conhecimentoatravesvideos.servicos;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,6 +28,22 @@ public class PlaylistServico {
     }
 
     public Playlist buscarPorId(Long id) {
-        return null;
+        Optional<Playlist> p = playlistRepositorio.findById(id);
+
+        try {
+            return p.get();
+        } catch (NoSuchElementException e) {
+            return null;
+        }
+    }
+
+    public Playlist buscarPorNome(String nome, long id) {
+        Playlist p = playlistRepositorio.getByNome(nome, id);
+
+        try {
+            return p;
+        } catch (NoSuchElementException e) {
+            return null;
+        }
     }
 }

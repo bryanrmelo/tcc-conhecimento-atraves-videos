@@ -56,8 +56,10 @@ CREATE TABLE video (
 	privado boolean NOT NULL,
 	categoria varchar(255) NOT NULL,
 	playlist_id int,
+	fonte_id int,
 	CONSTRAINT fk_autor FOREIGN KEY(autor_id) REFERENCES usuario(id),
-	CONSTRAINT fk_playlist FOREIGN KEY(playlist_id) REFERENCES playlist(id)
+	CONSTRAINT fk_playlist FOREIGN KEY(playlist_id) REFERENCES playlist(id),
+	CONSTRAINT fk_fonte FOREIGN KEY (fonte_id) REFERENCES fonte(id)
 );
 
 CREATE TABLE fonte (

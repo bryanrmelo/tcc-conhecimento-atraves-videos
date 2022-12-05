@@ -29,6 +29,7 @@ export class UploadService {
   }
 
   enviarVideo(formUpload: FormGroup<any>) {
+    console.log(JSON.stringify(formUpload.getRawValue()))
     this.httpClient
       .post(`${this.url}/video`, JSON.stringify(formUpload.getRawValue()), {
         headers: this.headersJSON,

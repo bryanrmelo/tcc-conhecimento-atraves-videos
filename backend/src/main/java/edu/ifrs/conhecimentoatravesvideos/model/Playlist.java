@@ -15,6 +15,14 @@ public class Playlist extends Entidade {
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 
+    public Playlist() {
+    }
+
+    public Playlist(Long playlist) {
+
+        this.setId(playlist);
+    }
+
     public String getNome() {
         return this.nome;
     }
@@ -30,6 +38,13 @@ public class Playlist extends Entidade {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
+
+    @Override
+    public String toString() {
+        return "{" +
+                " nome='" + getNome() + "'" +
+                ", usuario='" + getUsuario() + "'" +
+                "}";
+    }
 
 }
