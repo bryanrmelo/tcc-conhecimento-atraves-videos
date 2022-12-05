@@ -1,3 +1,4 @@
+import { HomeComponent } from './components/home/home.component';
 import { VideoService } from './services/video.service';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
@@ -15,23 +16,21 @@ export class AppComponent {
   title = 'Conhecimento entre videos';
   user = localStorage.getItem('currentUser');
   videos: Video[];
-  search: String = 'teste';
+  search: string = 'teste';
 
   constructor(
     private loginService: LoginService,
-    private videoService: VideoService
+    private videoService: VideoService,
+    private homeComponent: HomeComponent
   ) {
     const user = localStorage.getItem('currentUser');
   }
 
   buscarVideoPorNome() {
-    console.log(this.search);
-    return this.videoService
-      .getVideosByName(this.search)
-      .subscribe((videos: Video[]) => {
-        this.videos = videos;
-        console.log(videos);
-      });
+    localStorage.removeItem('search');
+    localStorage.setItem('search', this.search);
+
+    //this.homeComponent.refresh();
   }
 
   logout() {
@@ -39,6 +38,5 @@ export class AppComponent {
     location.reload();
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }
