@@ -3,6 +3,10 @@ package edu.ifrs.conhecimentoatravesvideos.api.controles;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -34,28 +38,21 @@ public class VideoControleApi {
     private VideoAssembler videoAssembler;
 
     @Autowired
-    private PagedResourcesAssembler<Video> pagedResourcesAssemblerVideo;
+    private PagedResourcesAssembler<Video> pagedResourcesAssembler;
 
-    public Video buscarPorId(long id) {
-        return null;
+    @GetMapping("/todos")
+    public CollectionModel<EntityModel<Video>> buscarTodos(
+            @PageableDefault(sort = { "id" }, direction = Direction.ASC) Pageable paginacao) {
+        Page<Video> videos = videoServico.buscarTodos(paginacao);
+
+        return pagedResourcesAssembler.toModel(videos, videoAssembler);
 
     }
-
-    /*
-     * @GetMapping
-     * public CollectionModel<EntityModel<Video>> buscarTodos(@PageableDefault(sort
-     * = { "id" }, direction = Direction.ASC) Pageable paginacao) {
-     * Page<Video> videos = videoServico.buscarTodos(paginacao);
-     * 
-     * return pagedResourcesAssembler.toModel(videos, videoAssembler);
-     * 
-     * }
-     */
 
     @GetMapping()
     public CollectionModel<EntityModel<Video>> buscarPorNome(@RequestParam("search") String nome) {
         List<Video> videos = videoServico.buscarPorNome(nome);
-
+        System.out.println(videos);
         return videoAssembler.toCollectionModel(videos);
     }
 
@@ -65,6 +62,13 @@ public class VideoControleApi {
         Video video = videoServico.salvar(videoDTO);
 
         System.out.println("OK");
+
+        return videoAssembler.toModel(video);
+    }
+
+    @GetMapping("/id")
+    public EntityModel<Video> buscarPorId(Long id) {
+        Video video = videoServico.buscarPorId(id);
 
         return videoAssembler.toModel(video);
     }

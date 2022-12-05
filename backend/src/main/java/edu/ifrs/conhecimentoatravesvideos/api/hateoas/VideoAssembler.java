@@ -28,12 +28,12 @@ public class VideoAssembler implements SimpleRepresentationModelAssembler<Video>
 
     @Override
     public void addLinks(CollectionModel<EntityModel<Video>> resources) {
-        /*
-         * Link selfLink = linkTo(methodOn(VideoControleApi.class).buscarTodos(null))
-         * .withSelfRel()
-         * .withType("GET");
-         * 
-         * resources.add(selfLink);
-         */
+
+        Link selfLink = linkTo(methodOn(VideoControleApi.class).buscarTodos(null))
+                .withSelfRel()
+                .withType("GET");
+
+        resources.add(selfLink);
+
     }
 }
