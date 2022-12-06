@@ -15,12 +15,17 @@ import { Video } from 'src/app/models/video';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+
+  user = localStorage.getItem('currentUser');
+
   constructor(
     private httpClient: HttpClient,
     private spinner: NgxSpinnerService,
     private youTubeService: YoutubeService,
     private videoServico: VideoService
-  ) {}
+  ) {
+    const user = localStorage.getItem('currentUser');
+  }
 
   videos: Video[];
   videosConvertidos: any[] = [];
