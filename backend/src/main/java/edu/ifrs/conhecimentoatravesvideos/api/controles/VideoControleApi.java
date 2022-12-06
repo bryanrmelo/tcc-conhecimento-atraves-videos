@@ -40,7 +40,7 @@ public class VideoControleApi {
     @Autowired
     private PagedResourcesAssembler<Video> pagedResourcesAssembler;
 
-    @GetMapping("/todos")
+    @GetMapping()
     public CollectionModel<EntityModel<Video>> buscarTodos(
             @PageableDefault(sort = { "id" }, direction = Direction.ASC) Pageable paginacao) {
         Page<Video> videos = videoServico.buscarTodos(paginacao);
@@ -49,7 +49,7 @@ public class VideoControleApi {
 
     }
 
-    @GetMapping()
+    @GetMapping(path = "/", params = "search=nome")
     public CollectionModel<EntityModel<Video>> buscarPorNome(@RequestParam("search") String nome) {
         List<Video> videos = videoServico.buscarPorNome(nome);
         System.out.println(videos);

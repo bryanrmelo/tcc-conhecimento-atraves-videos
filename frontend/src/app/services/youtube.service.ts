@@ -1,3 +1,4 @@
+import { Video } from './../models/video';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
@@ -51,6 +52,15 @@ export class YoutubeService {
       channel +
       '&part=id&order=date&part=snippet &type=video,id&maxResults=' +
       maxResults;
+    return this.http.get(url).pipe(
+      map((res) => {
+        return res;
+      })
+    );
+  }
+
+  getVideoPorUrl(video: Video): any {
+    let url = `https://www.googleapis.com/youtube/v3/videos?id=${video.link}&key=${this.apiKey}&fields=items&part=snippet`;
     return this.http.get(url).pipe(
       map((res) => {
         return res;
