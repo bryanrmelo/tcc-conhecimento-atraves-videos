@@ -1,6 +1,7 @@
 package edu.ifrs.conhecimentoatravesvideos.repositorios;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -23,4 +24,7 @@ public interface PlaylistRepositorio extends JpaRepository<Playlist, Long> {
 
     @Query(value = "SELECT * FROM playlist WHERE nome = ?1 AND usuario_id = ?2", nativeQuery = true)
     Playlist getByNome(String nome, long id);
+
+    @Query(value = "SELECT * FROM playlist WHERE id = ?1", nativeQuery = true)
+    Optional<Playlist> buscarPorId(Long id);
 }

@@ -22,7 +22,6 @@ public class UsuarioServico {
     }
 
     public Usuario buscarUsuario(Usuario usuario) {
-        System.out.println(usuario);
         Optional<Usuario> u = usuarioRepositorio.findById(usuario.getId());
         try {
             return u.get();
@@ -34,7 +33,6 @@ public class UsuarioServico {
 
     public Usuario buscarPorNome(String nome) {
         Usuario u = usuarioRepositorio.getByNomeUsuario(nome);
-        System.out.println(u);
         try {
             return u;
         } catch (NoSuchElementException e ) {

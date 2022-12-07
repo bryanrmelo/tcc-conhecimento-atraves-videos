@@ -12,7 +12,7 @@ public class Fonte extends Entidade {
     private String nome;
 
     @Column(nullable = false)
-    private Blob texto;
+    private Blob dados;
 
     public String getNome() {
         return this.nome;
@@ -22,11 +22,11 @@ public class Fonte extends Entidade {
         this.nome = nome;
     }
 
-    public Blob getTexto() {
-        return this.texto;
+    public Blob getDados() {
+        return this.dados;
     }
 
-    public void setTexto(Blob texto) {
-        this.texto = texto;
+    public void setDados(Blob dados) {
+        this.dados = dados;
     }
 }

@@ -10,19 +10,20 @@ import edu.ifrs.conhecimentoatravesvideos.model.Video;
 @Component
 public class VideoMapeador {
 
-    public Video converterParaEntidade(VideoDTO videoDTO) {
-        Usuario usuario = new Usuario(videoDTO.getAutor());
-        Playlist playlist = new Playlist(videoDTO.getPlaylist());
+  public Video converterParaEntidade(VideoDTO videoDTO) {
 
-        Video video = new Video();
+    Usuario usuario = new Usuario(videoDTO.getAutor());
+    Playlist playlist = new Playlist(videoDTO.getPlaylist());
 
-        video.setTitulo(videoDTO.getTitulo());
-        video.setLink(videoDTO.getLink());
-        video.setAutor(usuario);
-        video.setPlaylist(playlist);
-        video.setCategoria(videoDTO.getCategoria());
-        video.setPrivado(videoDTO.getPrivado());
+    Video video = new Video();
 
-        return video;
-    }
+    video.setTitulo(videoDTO.getTitulo());
+    video.setLink(videoDTO.getLink());
+    video.setAutor(usuario);
+    video.setPlaylist(playlist);
+    video.setCategoria(videoDTO.getCategoria());
+    video.setPrivado(videoDTO.getPrivado());
+
+    return video;
+  }
 }

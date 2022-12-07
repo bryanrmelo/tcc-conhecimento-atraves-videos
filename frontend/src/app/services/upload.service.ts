@@ -19,8 +19,6 @@ export class UploadService {
 
   postFile(fileToUpload: File) {
     this.formData.append('file', fileToUpload, fileToUpload.name);
-    console.log('Pré post');
-    console.log(this.formData);
     this.httpClient
       .post(`${this.url}/fonte`, this.formData)
       .subscribe((data) => {
@@ -29,7 +27,6 @@ export class UploadService {
   }
 
   enviarVideo(formUpload: FormGroup<any>) {
-    console.log(JSON.stringify(formUpload.getRawValue()))
     this.httpClient
       .post(`${this.url}/video`, JSON.stringify(formUpload.getRawValue()), {
         headers: this.headersJSON,

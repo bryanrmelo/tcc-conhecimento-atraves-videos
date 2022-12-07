@@ -39,7 +39,7 @@ public class VideoServico {
         return videoRepositorio.save(video);
     }
 
-    public List<Video> buscarPorNome(String nome) {
+    public List<Video> buscarVariosPorNome(String nome) {
         Optional<List<Video>> v = videoRepositorio.findByNome(nome);
         try {
             return v.get();
@@ -53,12 +53,43 @@ public class VideoServico {
     }
 
     public Video buscarPorId(Long id) {
-        Optional<Video> v = videoRepositorio.findById(id);
+        Optional<Video> v = videoRepositorio.buscarPorId(id);
         try {
             return v.get();
         } catch (NoSuchElementException e) {
             return null;
         }
+    }
+
+    public Video buscarPorLink(String link) {
+        Optional<Video> v = videoRepositorio.buscarPorLink(link);
+        try {
+            return v.get();
+        } catch (NoSuchElementException e) {
+            return null;
+        }
+    }
+
+    public Video atualizar(VideoDTO videoDTO) {
+        Video video = videoMapeador.converterParaEntidade(videoDTO);
+
+        video.setAutor(usuarioServico.buscarPorNome(video.getAutor().getNome()));
+        video.setPlaylist(playlistServico.buscarPorId(video.getPlaylist().getId()));
+
+        return videoRepositorio.save(atualizarDadosVideo(video));
+    }
+
+    private Video atualizarDadosVideo(Video video) {
+        Video videoDb = videoRepositorio.buscarPorLink(video.getLink()).get();
+
+        videoDb.setTitulo(video.getTitulo());
+        videoDb.setLink(video.getLink());
+        videoDb.setCategoria(video.getCategoria());
+        videoDb.setPrivado(video.getPrivado());
+        videoDb.setPlaylist(video.getPlaylist());
+        videoDb.setFonte(video.getFonte());
+
+        return videoDb;
     }
 
 }

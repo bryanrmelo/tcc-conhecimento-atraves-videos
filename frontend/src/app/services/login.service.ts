@@ -36,7 +36,6 @@ export class LoginService {
         .pipe(
           map((user) => {
             localStorage.setItem('currentUser', JSON.stringify(user));
-            console.log('TCL: AuthenticationService -> login -> user', user);
             return user;
           })
         );

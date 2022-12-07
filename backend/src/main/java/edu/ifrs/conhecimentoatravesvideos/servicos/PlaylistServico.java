@@ -28,7 +28,7 @@ public class PlaylistServico {
     }
 
     public Playlist buscarPorId(Long id) {
-        Optional<Playlist> p = playlistRepositorio.findById(id);
+        Optional<Playlist> p = playlistRepositorio.buscarPorId(id);
 
         try {
             return p.get();

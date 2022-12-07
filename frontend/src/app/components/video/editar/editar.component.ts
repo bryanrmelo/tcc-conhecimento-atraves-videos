@@ -18,7 +18,7 @@ export class EditarVideoComponent implements OnInit {
   formUpload: FormGroup;
   playlists: Playlist[] | undefined;
   routeSub: Subscription;
-  video: Video;
+  video: Video = new Video();
 
   constructor(
     private router: Router,
@@ -30,21 +30,21 @@ export class EditarVideoComponent implements OnInit {
 
   ngOnInit(): void {
     this.usuario = JSON.parse(localStorage.getItem('currentUser'));
-    this.criarForm();
     this.getPlaylistsByUser();
     this.routeSub = this.route.params.subscribe((params) => {
       this.getVideo(params['id']);
     });
+    this.criarForm();
   }
 
   criarForm() {
     this.formUpload = this.formBuilder.group({
-      titulo: [this.video.titulo, [Validators.required]],
-      link: [this.video.link, [Validators.required]],
-      autor: [this.usuario.nome, [Validators.required]],
-      privado: [this.video.privado, [Validators.required]],
-      categoria: [this.video.categoria, [Validators.required]],
-      playlist: [this.video.playlist],
+      titulo: ['', [Validators.required]],
+      link: ['', [Validators.required]],
+      autor: [this.usuario.id, [Validators.required]],
+      privado: ['', [Validators.required]],
+      categoria: ['', [Validators.required]],
+      playlist: [''],
     });
   }
 
@@ -55,22 +55,16 @@ export class EditarVideoComponent implements OnInit {
         this.playlists = playlists;
       });
   }
-  /*
-    async getPlaylistsByUser() {
-      this.playlists = await firstValueFrom(
-        this.videoService.getPlaylistsByUserId(this.usuario.id)
-      )
-      console.log(this.playlists);
-    */
 
   getVideo(id: number) {
     this.videoService.getVideo(id).subscribe((res: Video) => {
       this.video = res;
+      this.formUpload.patchValue(this.video);
     });
   }
 
   submit() {
-    this.videoService.atualizar(this.formUpload, this.video.id);
+    this.videoService.atualizar(this.formUpload);
     this.router.navigateByUrl('/');
   }
 

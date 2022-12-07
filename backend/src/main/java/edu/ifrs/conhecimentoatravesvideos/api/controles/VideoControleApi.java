@@ -15,8 +15,10 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,10 +51,26 @@ public class VideoControleApi {
 
     }
 
-    @GetMapping(path = "/", params = "search=nome")
-    public CollectionModel<EntityModel<Video>> buscarPorNome(@RequestParam("search") String nome) {
-        List<Video> videos = videoServico.buscarPorNome(nome);
-        System.out.println(videos);
+    @GetMapping(params = "link")
+    public EntityModel<Video> buscarPorNome(@RequestParam("link") String link) {
+        Video video = videoServico.buscarPorLink(link);
+
+        return videoAssembler.toModel(video);
+    }
+
+    @GetMapping(params = "id")
+    public EntityModel<Video> buscarPorId(@RequestParam("id") String idUrl) {
+        Long id = new Long(idUrl);
+
+        Video video = videoServico.buscarPorId(id);
+
+        return videoAssembler.toModel(video);
+    }
+
+    @GetMapping(params = "search")
+    public CollectionModel<EntityModel<Video>> buscarVariosPorNome(@RequestParam("search") String nome) {
+        List<Video> videos = videoServico.buscarVariosPorNome(nome);
+
         return videoAssembler.toCollectionModel(videos);
     }
 
@@ -61,14 +79,19 @@ public class VideoControleApi {
     public EntityModel<Video> salvar(@RequestBody VideoDTO videoDTO) {
         Video video = videoServico.salvar(videoDTO);
 
-        System.out.println("OK");
-
         return videoAssembler.toModel(video);
     }
 
     @GetMapping("/id")
     public EntityModel<Video> buscarPorId(Long id) {
         Video video = videoServico.buscarPorId(id);
+
+        return videoAssembler.toModel(video);
+    }
+
+    @PutMapping(consumes = { MediaType.APPLICATION_JSON_VALUE })
+    public EntityModel<Video> atualizar(@RequestBody VideoDTO videoDTO) {
+        Video video = videoServico.atualizar(videoDTO);
 
         return videoAssembler.toModel(video);
     }

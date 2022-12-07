@@ -10,7 +10,7 @@ public class FonteMapeador {
     public Fonte converterParaEntidade(FonteDTO fonteDTO) {
         Fonte fonte = new Fonte();
 
-        fonte.setTexto(fonteDTO.getTexto());
+        fonte.setDados(fonteDTO.getTexto());
 
         return fonte;
     }
