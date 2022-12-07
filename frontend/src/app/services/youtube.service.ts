@@ -59,12 +59,13 @@ export class YoutubeService {
     );
   }
 
-  getVideoPorUrl(video: Video): any {
-    let url = `https://www.googleapis.com/youtube/v3/videos?id=${video.link}&key=${this.apiKey}&fields=items&part=snippet`;
+  getVideoPorUrl(link: any): any {
+    let url = `https://www.googleapis.com/youtube/v3/videos?id=${link}&key=${this.apiKey}&fields=items&part=snippet`;
     return this.http.get(url).pipe(
       map((res) => {
         return res;
       })
     );
   }
+
 }

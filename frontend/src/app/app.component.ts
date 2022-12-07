@@ -16,7 +16,7 @@ export class AppComponent {
   title = 'Conhecimento entre videos';
   user = localStorage.getItem('currentUser');
   videos: Video[];
-  search: string = 'teste';
+  search: string = '';
 
   constructor(
     private loginService: LoginService,

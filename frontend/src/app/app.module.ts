@@ -17,6 +17,7 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
 import { EditarComponent } from './components/usuario/editar/editar.component';
 import { VideoComponent } from './components/video/video.component';
 import { EnviarVideoComponent } from './components/video/enviar/enviar.component';
+import { EditarVideoComponent } from './components/video/editar/editar.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { EnviarVideoComponent } from './components/video/enviar/enviar.component
     EnviarFonteComponent,
     UsuarioComponent,
     EditarComponent,
+    EditarVideoComponent
   ],
   imports: [
     BrowserModule,

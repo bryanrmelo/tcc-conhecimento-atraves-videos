@@ -1,42 +1,50 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Playlist } from 'src/app/models/playlist';
 import { Usuario } from 'src/app/models/usuario';
+import { Video } from 'src/app/models/video';
 import { UploadService } from './../../../services/upload.service';
 import { VideoService } from './../../../services/video.service';
 
 @Component({
-  selector: 'app-enviar-video',
-  templateUrl: './enviar.component.html',
-  styleUrls: ['./enviar.component.css'],
+  selector: 'app-editar-video',
+  templateUrl: './editar.component.html',
+  styleUrls: ['./editar.component.css'],
 })
-export class EnviarVideoComponent implements OnInit {
+export class EditarVideoComponent implements OnInit {
   usuario: Usuario;
   formUpload: FormGroup;
   playlists: Playlist[] | undefined;
+  routeSub: Subscription;
+  video: Video;
 
   constructor(
     private router: Router,
     private uploadService: UploadService,
     private formBuilder: FormBuilder,
-    private videoService: VideoService
+    private videoService: VideoService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.usuario = JSON.parse(localStorage.getItem('currentUser'));
     this.criarForm();
     this.getPlaylistsByUser();
+    this.routeSub = this.route.params.subscribe((params) => {
+      this.getVideo(params['id']);
+    });
   }
 
   criarForm() {
     this.formUpload = this.formBuilder.group({
-      titulo: ['', [Validators.required]],
-      link: ['', [Validators.required]],
+      titulo: [this.video.titulo, [Validators.required]],
+      link: [this.video.link, [Validators.required]],
       autor: [this.usuario.nome, [Validators.required]],
-      privado: ['', [Validators.required]],
-      categoria: ['', [Validators.required]],
-      playlist: [''],
+      privado: [this.video.privado, [Validators.required]],
+      categoria: [this.video.categoria, [Validators.required]],
+      playlist: [this.video.playlist],
     });
   }
 
@@ -55,8 +63,14 @@ export class EnviarVideoComponent implements OnInit {
       console.log(this.playlists);
     */
 
+  getVideo(id: number) {
+    this.videoService.getVideo(id).subscribe((res: Video) => {
+      this.video = res;
+    });
+  }
+
   submit() {
-    this.uploadService.enviarVideo(this.formUpload);
+    this.videoService.atualizar(this.formUpload, this.video.id);
     this.router.navigateByUrl('/');
   }
 

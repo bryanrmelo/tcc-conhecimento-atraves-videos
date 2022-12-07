@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { Usuario } from 'src/app/models/usuario';
 import { Observable } from 'rxjs';
 import { VideoService } from './../../services/video.service';
 import { HttpClient } from '@angular/common/http';
@@ -15,28 +17,32 @@ import { Video } from 'src/app/models/video';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-
   user = localStorage.getItem('currentUser');
+  usuario : Usuario = new Usuario(this.user);
 
   constructor(
     private httpClient: HttpClient,
     private spinner: NgxSpinnerService,
     private youTubeService: YoutubeService,
-    private videoServico: VideoService
+    private videoServico: VideoService,
+    private router: Router
   ) {
     const user = localStorage.getItem('currentUser');
+
   }
 
-  videos: Video[];
+  videos: Video[] = [];
   videosConvertidos: any[] = [];
 
   ngOnInit(): void {
     this.spinner.show();
     this.videoServico.getVideos().subscribe((videos: Video[]) => {
-      this.videos = videos;
-      console.log(this.videos);
+      for (let element of videos) {
+        if (element.privado == false) {
+          this.videos.push(element);
+        }
+      }
       this.converterParaVideoYoutube(this.videos);
-      console.log(this.videosConvertidos);
     });
     /*
     this.videoServico
@@ -58,15 +64,14 @@ export class HomeComponent implements OnInit {
   }
 
   converterParaVideoYoutube(videos: Video[]): void {
-    console.log(videos);
     for (let i = 0; i < videos.length; i++) {
-      this.youTubeService.getVideoPorUrl(videos[i]).subscribe((lista) => {
+      this.youTubeService.getVideoPorUrl(videos[i].link).subscribe((lista) => {
         for (let element of lista['items']) {
           this.videosConvertidos.push(element);
         }
       });
     }
-    console.log('Convertidos: ' + this.videosConvertidos);
+    this.videosConvertidos.sort();
   }
 
   refresh(): void {

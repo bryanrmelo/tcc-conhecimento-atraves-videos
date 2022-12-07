@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { map, Observable } from 'rxjs';
 import { Usuario } from 'src/app/models/usuario';
 import { Playlist } from '../models/playlist';
@@ -39,5 +40,16 @@ export class VideoService {
         return data._embedded.videoList as Video[];
       })
     );
+  }
+
+  getVideo(id: number): Observable<Video> {
+    return this.httpClient.get(`${this.url}/video/${id}`).pipe(
+      map((data: any) => {
+        return data._embedded.video as Video;
+      })
+    );
+  }
+  atualizar(formUpload: FormGroup<any>, id: number) {
+    this.httpClient.put<Video>(`${this.url}/video${id}`, formUpload);
   }
 }
