@@ -18,7 +18,7 @@ import { Video } from 'src/app/models/video';
 })
 export class HomeComponent implements OnInit {
   user = localStorage.getItem('currentUser');
-  usuario : Usuario = new Usuario(this.user);
+  usuario: Usuario = new Usuario(this.user);
 
   constructor(
     private httpClient: HttpClient,
@@ -28,7 +28,6 @@ export class HomeComponent implements OnInit {
     private router: Router
   ) {
     const user = localStorage.getItem('currentUser');
-
   }
 
   videos: Video[] = [];
@@ -36,10 +35,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.spinner.show();
+
     this.videoServico.getVideos().subscribe((videos: Video[]) => {
       for (let element of videos) {
         if (element.privado == false) {
           this.videos.push(element);
+          console.log(JSON.stringify(this.videos));
         }
       }
       this.converterParaVideoYoutube(this.videos);
@@ -68,6 +69,7 @@ export class HomeComponent implements OnInit {
       this.youTubeService.getVideoPorUrl(videos[i].link).subscribe((lista) => {
         for (let element of lista['items']) {
           this.videosConvertidos.push(element);
+          console.log(JSON.stringify(this.videosConvertidos));
         }
       });
     }

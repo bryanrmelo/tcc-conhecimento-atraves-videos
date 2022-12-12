@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import edu.ifrs.conhecimentoatravesvideos.api.dto.VideoDTO;
 import edu.ifrs.conhecimentoatravesvideos.api.mapeadores.VideoMapeador;
+import edu.ifrs.conhecimentoatravesvideos.model.Verificacao;
 import edu.ifrs.conhecimentoatravesvideos.model.Video;
 import edu.ifrs.conhecimentoatravesvideos.repositorios.VideoRepositorio;
 
@@ -27,6 +28,9 @@ public class VideoServico {
     private PlaylistServico playlistServico;
 
     @Autowired
+    private VerificacaoServico verificacaoServico;
+
+    @Autowired
     private VideoMapeador videoMapeador;
 
     public Video salvar(VideoDTO videoDTO) {
@@ -35,6 +39,7 @@ public class VideoServico {
 
         video.setAutor(usuarioServico.buscarPorNome(video.getAutor().getNome()));
         video.setPlaylist(playlistServico.buscarPorId(video.getPlaylist().getId()));
+        video.setVerificacao(new Verificacao(video));
 
         return videoRepositorio.save(video);
     }
@@ -85,9 +90,10 @@ public class VideoServico {
         videoDb.setTitulo(video.getTitulo());
         videoDb.setLink(video.getLink());
         videoDb.setCategoria(video.getCategoria());
-        videoDb.setPrivado(video.getPrivado());
+        videoDb.setPrivado(video.isPrivado());
         videoDb.setPlaylist(video.getPlaylist());
         videoDb.setFonte(video.getFonte());
+        videoDb.setVerificacao(video.getVerificacao());
 
         return videoDb;
     }

@@ -110,9 +110,14 @@
           type="search"
           placeholder="Pesquisar"
           aria-label="Search"
-          [(ngModel)]="search" name="search"
+          [(ngModel)]="search"
+          name="search"
         />
-        <button class="btn btn-dark" type="submit" (click)="buscarVideoPorNome()">
+        <button
+          class="btn btn-dark"
+          type="submit"
+          (click)="buscarVideoPorNome()"
+        >
           <i class="fas fa-search"></i>
         </button>
       </form>
@@ -130,7 +135,10 @@
     </div>
   </div>
 </nav>
-<router-outlet></router-outlet>
+
+<div id="content">
+  <router-outlet></router-outlet>
+</div>
 
 <footer id="footer" class="container-fluid bg-dark pt-1">
   <p class="text-center text-light mb-0">IFRS 2022 &copy;</p>

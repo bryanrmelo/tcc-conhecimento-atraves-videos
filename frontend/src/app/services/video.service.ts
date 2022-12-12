@@ -56,8 +56,6 @@ export class VideoService {
     formUpload.patchValue({
       autor: formUpload.get('autor').value.nome,
     });
-
-    console.log(JSON.stringify(formUpload.getRawValue()));
     this.httpClient
       .put<any>(`${this.url}/video`, JSON.stringify(formUpload.getRawValue()), {
         headers: this.headersJSON,

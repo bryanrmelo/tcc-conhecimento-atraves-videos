@@ -1,5 +1,6 @@
 package edu.ifrs.conhecimentoatravesvideos.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -8,8 +9,6 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Video extends Entidade {
-
-    
 
     @Column(nullable = false)
     private String titulo;
@@ -34,6 +33,10 @@ public class Video extends Entidade {
     @OneToOne
     @JoinColumn(name = "fonte_id", nullable = false)
     private Fonte fonte;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "verificacao_id")
+    private Verificacao verificacao;
 
     public String getTitulo() {
         return this.titulo;
@@ -60,10 +63,6 @@ public class Video extends Entidade {
     }
 
     public boolean isPrivado() {
-        return this.privado;
-    }
-
-    public boolean getPrivado() {
         return this.privado;
     }
 
@@ -95,17 +94,26 @@ public class Video extends Entidade {
         this.fonte = fonte;
     }
 
+    public Verificacao getVerificacao() {
+        return this.verificacao;
+    }
+
+    public void setVerificacao(Verificacao verificacao) {
+        this.verificacao = verificacao;
+    }
+
     @Override
     public String toString() {
         return "{" +
-            " titulo='" + getTitulo() + "'" +
-            ", link='" + getLink() + "'" +
-            ", categoria='" + getCategoria() + "'" +
-            ", privado='" + isPrivado() + "'" +
-            ", autor='" + getAutor() + "'" +
-            ", playlist='" + getPlaylist() + "'" +
-            ", fonte='" + getFonte() + "'" +
-            "}";
+                " titulo='" + getTitulo() + "'" +
+                ", link='" + getLink() + "'" +
+                ", categoria='" + getCategoria() + "'" +
+                ", privado='" + isPrivado() + "'" +
+                ", autor='" + getAutor() + "'" +
+                ", playlist='" + getPlaylist() + "'" +
+                ", fonte='" + getFonte() + "'" +
+                ", verificacao='" + getVerificacao() + "'" +
+                "}";
     }
 
 }

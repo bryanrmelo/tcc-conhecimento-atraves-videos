@@ -57,13 +57,24 @@ CREATE TABLE video (
 	categoria varchar(255) NOT NULL,
 	playlist_id int,
 	fonte_id int,
+	verificacao_id int,
 	CONSTRAINT fk_autor FOREIGN KEY(autor_id) REFERENCES usuario(id),
 	CONSTRAINT fk_playlist FOREIGN KEY(playlist_id) REFERENCES playlist(id),
-	CONSTRAINT fk_fonte FOREIGN KEY (fonte_id) REFERENCES fonte(id)
+	CONSTRAINT fk_fonte FOREIGN KEY (fonte_id) REFERENCES fonte(id),
+	CONSTRAINT fk_verificacao FOREIGN KEY(verificacao_id) REFERENCES verificacao(id)
 );
 
 CREATE TABLE fonte (
 	id serial PRIMARY KEY,
 	nome varchar(255),
 	dados bytea
+);
+
+CREATE TABLE verificacao (
+	id serial PRIMARY KEY,
+	verificado boolean,
+	video_id int NOT NULL,
+	especialista_id int,
+	CONSTRAINT fk_video FOREIGN KEY(video_id) REFERENCES video(id),
+	CONSTRAINT fk_especialista FOREIGN KEY(especialista_id) REFERENCES usuario(id)
 );

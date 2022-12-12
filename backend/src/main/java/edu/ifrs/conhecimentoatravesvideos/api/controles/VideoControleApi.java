@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,7 +45,7 @@ public class VideoControleApi {
     public CollectionModel<EntityModel<Video>> buscarTodos(
             @PageableDefault(sort = { "id" }, direction = Direction.ASC) Pageable paginacao) {
         Page<Video> videos = videoServico.buscarTodos(paginacao);
-
+        //System.out.println(videos.getContent().get(0).getVerificacao().toString());
         return pagedResourcesAssembler.toModel(videos, videoAssembler);
 
     }

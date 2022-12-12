@@ -8,7 +8,7 @@
       <label class="form-label">Título do vídeo</label>
       <input class="form-control" type="text" formControlName="titulo" />
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
       <label class="form-label">Privacidade</label>
       <select
         class="form-select"
@@ -19,7 +19,7 @@
         <option value="true">Privado</option>
       </select>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
       <label class="form-label">Categoria</label>
       <select
         class="form-select"
@@ -30,14 +30,22 @@
         <option value="academico">Acadêmico</option>
       </select>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
       <label class="form-label">Playlist</label>
-      <select class="form-select" aria-label="Default select example" formControlName="playlist">
+      <select
+        class="form-select"
+        aria-label="Default select example"
+        formControlName="playlist"
+      >
         <option value="default"></option>
         <option *ngFor="let playlist of playlists" value="{{ playlist.id }}">
           {{ playlist.nome }}
         </option>
       </select>
+    </div>
+    <div class="col-md-3">
+      <label class="form-label">Fonte</label>
+      <input class="form-control" type="file" />
     </div>
     <span style="display: inline; margin-top: 50px">
       <button class="m-1 p-1 btn btn-success" type="button" (click)="submit()">

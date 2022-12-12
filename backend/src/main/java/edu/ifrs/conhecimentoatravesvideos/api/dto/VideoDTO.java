@@ -22,6 +22,9 @@ public class VideoDTO extends EntidadeDTO {
     @Column(nullable = false)
     private Long playlist;
 
+    @Column(nullable = false)
+    private Long verificacao;
+
     public String getTitulo() {
         return this.titulo;
     }
@@ -72,6 +75,14 @@ public class VideoDTO extends EntidadeDTO {
 
     public void setPlaylist(Long playlist) {
         this.playlist = playlist;
+    }
+
+    public Long getVerificacao() {
+        return this.verificacao;
+    }
+
+    public void setVerificacao(Long verificacao) {
+        this.verificacao = verificacao;
     }
 
     @Override

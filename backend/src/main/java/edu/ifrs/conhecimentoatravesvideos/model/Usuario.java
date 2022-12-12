@@ -39,6 +39,10 @@ public class Usuario extends Entidade {
     @OneToMany(mappedBy = "usuario")
     private List<Playlist> playlists;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "especialista")
+    private List<Verificacao> verificacoes;
+
     public Usuario() {
 
     }
@@ -107,6 +111,14 @@ public class Usuario extends Entidade {
 
     public void setPlaylists(List<Playlist> playlists) {
         this.playlists = playlists;
+    }
+
+    public List<Verificacao> getVerificacoes() {
+        return this.verificacoes;
+    }
+
+    public void setVerificacoes(List<Verificacao> verificacoes) {
+        this.verificacoes = verificacoes;
     }
 
     @Override
