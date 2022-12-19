@@ -90,7 +90,7 @@ public class VideoControleApi {
 
     @PutMapping(consumes = { MediaType.APPLICATION_JSON_VALUE })
     public EntityModel<Video> atualizar(@RequestBody VideoDTO videoDTO) {
-        Video video = videoServico.atualizar(videoDTO);
+        Video video = videoServico.salvar(videoDTO);
 
         return videoAssembler.toModel(video);
     }
