@@ -10,5 +10,6 @@
             "path": "C:\\Program Files\\Eclipse Adoptium\\jdk-8.0.345.1-hotspot"
         }
     ],
-    "discord.enabled": true
+    "discord.enabled": true,
+    "java.compile.nullAnalysis.mode": "automatic"
 }
